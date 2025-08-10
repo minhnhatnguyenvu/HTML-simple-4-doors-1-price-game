@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>4 Doors Game</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; background: #f4f4f4; }
+    .door { display: inline-block; margin: 10px; cursor: pointer; }
+    .door img { width: 120px; height: 180px; transition: transform 0.3s; }
+    .door.disabled img { opacity: 0.5; cursor: default; }
+    .door:hover:not(.disabled) img { transform: scale(1.05); }
+    #result { font-size: 24px; margin-top: 20px; }
+    button { margin-top: 20px; padding: 10px 20px; font-size: 18px; background: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    button:hover { background: #0056b3; }
+    #playAgain { display: none; } /* Hide button at start */
+  </style>
+</head>
+<body>
+  <h1>🎯 4 Doors Game</h1>
+  <p>You may choose only one door per turn.</p>
+  <div id="doors"></div>
+  <p id="result"></p>
+  <button id="playAgain" onclick="resetGame()">🔄 Play Again</button>
+
+  <script>
+    const doorImages = {
+      closed: "https://static.thenounproject.com/png/1890490-512.png",  // closed door
+      empty: "https://static.thenounproject.com/png/2237440-512.png",  // open door
+      prize: "https://static.thenounproject.com/png/5404501-512.png"   // gift/prize
+    };
+
+    let winningDoor;
+
+    function createGame() {
+      winningDoor = Math.floor(Math.random() * 4) + 1;
+      const doorsDiv = document.getElementById("doors");
+      doorsDiv.innerHTML = "";
+      document.getElementById("result").innerText = "";
+      document.getElementById("playAgain").style.display = "none"; // Hide button at new game
+
+      for (let i = 1; i <= 4; i++) {
+        const d = document.createElement("div");
+        d.className = "door";
+        const img = document.createElement("img");
+        img.src = doorImages.closed;
+
+        img.onclick = () => {
+          if (d.classList.contains("disabled")) return;
+
+          if (i === winningDoor) {
+            img.src = doorImages.prize;
+            document.getElementById("result").innerText = "🎉 You found the prize!";
+          } else {
+            img.src = doorImages.empty;
+            document.getElementById("result").innerText = `❌ No prize! It was behind Door ${winningDoor}.`;
+          }
+          // Disable all doors after one selection
+          document.querySelectorAll(".door").forEach(el => el.classList.add("disabled"));
+          // Show Play Again button
+          document.getElementById("playAgain").style.display = "inline-block";
+        };
+
+        d.appendChild(img);
+        doorsDiv.appendChild(d);
+      }
+    }
+
+    function resetGame() {
+      createGame();
+    }
+
+    // Initialize game
+    createGame();
+  </script>
+</body>
+</html>
