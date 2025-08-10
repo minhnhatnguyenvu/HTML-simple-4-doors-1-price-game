@@ -4,7 +4,7 @@ A simple game built with **HTML, CSS, and JavaScript** where the player chooses 
 Only one choice is allowed per round.
 
 ## 🖼 Demo
-[👉 Play Here](https://github.com/minhnhatnguyenvu/HTML-simple-4-doors-1-price-game)  
+[👉 Play Here](file:///C:/Users/nhanc/Downloads/index.html)  
 
 ---
 
