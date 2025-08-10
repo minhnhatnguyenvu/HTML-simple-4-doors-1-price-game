@@ -3,10 +3,6 @@
 A simple game built with **HTML, CSS, and JavaScript** where the player chooses 1 out of 4 doors to find a hidden prize.  
 Only one choice is allowed per round.
 
-## 🖼 Demo
-[👉 Play Here](file:///C:/Users/nhanc/Downloads/index.html)  
-
----
 
 ## 📜 How to Play
 1. You have 4 closed doors in front of you.
